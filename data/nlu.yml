@@ -90,3 +90,17 @@ nlu:
     - are you a human?
     - am I talking to a bot?
     - am I talking to a human?
+
+- intent: position_with_most_points
+  examples: |
+    - which [striker](position) has the most points?
+    - which [midfielder](position) has the most points?
+    - which [defender](position) has the most points?
+    - which [goalkeeper](position) has the most points?
+
+- intent: player_points_query
+  examples: |
+    - how many points does [vardy](player) have?
+    - how many points does [chilwell](player) have?
+    - how many points does [kane](player) have?
+    - how many points does [de bruyne](player) have? 
