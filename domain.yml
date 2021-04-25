@@ -8,6 +8,9 @@ intents:
   - mood_great
   - mood_unhappy
   - bot_challenge
+  - hello_world
+  - striker_most_points
+  - player_points_query
 
 responses:
   utter_greet:
