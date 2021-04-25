@@ -28,3 +28,13 @@ stories:
   - action: utter_did_that_help
   - intent: deny
   - action: utter_goodbye
+
+- story: striker most points path
+  steps:
+  - intent: striker_most_points
+  - action: action_striker_most_points
+
+- story: player points query path
+  steps:
+  - intent: player_points_query
+  - action: action_player_points_query
