@@ -123,4 +123,32 @@ class ActionPlayerPointsQuery(Action):
 
         return []
 
+class ActionPlayerGoalsQuery(Action):
+
+    def name(self) -> Text:
+         return "action_player_goals_query"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        entities = tracker.latest_message['entities']
+        print(entities)
+
+        
+        for e in entities:
+            if e['entity'] == 'player':
+                name = e['value']
+
+            player_query_row, player_query_first_name, player_query_last_name, player_query_team_name, player_query_goals, \
+                player_query_assists, player_query_cost, player_query_selection, player_query_gameweek_points, \
+                player_query_total_points, player_query_next_fixture, goal_text, assist_text = get_player_query_row(name)
+
+            message = (f'{player_query_first_name} {player_query_last_name} has scored {player_query_goals} {goal_text}.')
+                    
+           
+        dispatcher.utter_message(text=message)
+
+        return []
+
 
