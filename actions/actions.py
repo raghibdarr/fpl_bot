@@ -77,54 +77,35 @@ class ActionPlayerPointsQuery(Action):
         for e in entities:
             if e['entity'] == 'player':
                 name = e['value']
-    
-
-           # """
-            if name == "vardy":
-                # message = "Jamie Vardy has 66 points."
-                message = (
-                    f'{name} has 66 points.' )
-            if name == "chilwell":
-                # message = "Ben Chilwell has 56 points."
-                message = (
-                    f'{name} has 56 points.' )
-            if name == "Kane":
-                # message = "Harry Kane has 86 points."
                 
-                test = data_sheet.find(name)
-                query_row = test.row
-                query_col = test.col
-                # print(query_row, query_col)
+            test = data_sheet.find(name)
+            query_row = test.row
+            query_col = test.col
+            # print(query_row, query_col)
 
-                player_query_row = data_sheet.row_values(query_row)
-                player_query_first_name = player_query_row[41]
-                player_query_last_name = player_query_row[42]
+            player_query_row = data_sheet.row_values(query_row)
+            player_query_first_name = player_query_row[41]
+            player_query_last_name = player_query_row[42]
 
-                player_query_goals = player_query_row[8]
-                goal_text = "goals"
-                if player_query_goals == "":
-                    player_query_goals = 0
-                elif player_query_goals == '1':
-                    goal_text = "goal"
+            player_query_goals = player_query_row[8]
+            goal_text = "goals"
+            if player_query_goals == "":
+                player_query_goals = 0
+            elif player_query_goals == '1':
+                goal_text = "goal"
 
-                player_query_assists = player_query_row[9]
-                assist_text = "assists"
-                if player_query_assists == "":
-                    player_query_assists = 0
-                elif player_query_assists == '1':
-                    assist_text = "assist"
+            player_query_assists = player_query_row[9]
+            assist_text = "assists"
+            if player_query_assists == "":
+                player_query_assists = 0
+            elif player_query_assists == '1':
+                assist_text = "assist"
 
-                message = (
-                    f'Player is {player_query_first_name} {player_query_last_name}. '
-                    f'He has {player_query_goals} {goal_text} and {player_query_assists} {assist_text}.')
+            message = (
+                f'Player is {player_query_first_name} {player_query_last_name}. '
+                f'He has {player_query_goals} {goal_text} and {player_query_assists} {assist_text}.')
                     
-                # message = (f'{name} has 86 points.' )
-
-            if name == "de bruyne":
-                # message = "Kevin De Bruyne has 39 points."
-                message = (
-                    f'{name} has 39 points.' )
-           # """
+           
         dispatcher.utter_message(text=message)
 
         return []
