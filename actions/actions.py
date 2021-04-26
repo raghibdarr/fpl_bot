@@ -95,10 +95,10 @@ class ActionStrikerMostPoints(Action):
 
         return []
 
-class ActionPlayerPointsQuery(Action):
+class ActionPlayerTotalPointsQuery(Action):
 
     def name(self) -> Text:
-         return "action_player_points_query"
+         return "action_player_total_points_query"
 
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
@@ -151,4 +151,171 @@ class ActionPlayerGoalsQuery(Action):
 
         return []
 
+class ActionPlayerAssistsQuery(Action):
 
+    def name(self) -> Text:
+         return "action_player_assists_query"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        entities = tracker.latest_message['entities']
+        print(entities)
+
+        
+        for e in entities:
+            if e['entity'] == 'player':
+                name = e['value']
+
+            player_query_row, player_query_first_name, player_query_last_name, player_query_team_name, player_query_goals, \
+                player_query_assists, player_query_cost, player_query_selection, player_query_gameweek_points, \
+                player_query_total_points, player_query_next_fixture, goal_text, assist_text = get_player_query_row(name)
+
+            message = (f'{player_query_first_name} {player_query_last_name} has {player_query_assists} {assist_text}.')
+                    
+           
+        dispatcher.utter_message(text=message)
+
+        return []
+
+class ActionPlayerCostQuery(Action):
+
+    def name(self) -> Text:
+         return "action_player_cost_query"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        entities = tracker.latest_message['entities']
+        print(entities)
+
+        
+        for e in entities:
+            if e['entity'] == 'player':
+                name = e['value']
+
+            player_query_row, player_query_first_name, player_query_last_name, player_query_team_name, player_query_goals, \
+                player_query_assists, player_query_cost, player_query_selection, player_query_gameweek_points, \
+                player_query_total_points, player_query_next_fixture, goal_text, assist_text = get_player_query_row(name)
+
+            message = (f"{player_query_first_name} {player_query_last_name}'s price is £{player_query_cost} today.")
+                    
+           
+        dispatcher.utter_message(text=message)
+
+        return []
+
+class ActionPlayerSelectionQuery(Action):
+
+    def name(self) -> Text:
+         return "action_player_selection_query"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        entities = tracker.latest_message['entities']
+        print(entities)
+
+        
+        for e in entities:
+            if e['entity'] == 'player':
+                name = e['value']
+
+            player_query_row, player_query_first_name, player_query_last_name, player_query_team_name, player_query_goals, \
+                player_query_assists, player_query_cost, player_query_selection, player_query_gameweek_points, \
+                player_query_total_points, player_query_next_fixture, goal_text, assist_text = get_player_query_row(name)
+
+            message = (f'{player_query_first_name} {player_query_last_name} has been selected '
+                       f'by {player_query_selection}% of FPL players.')
+                    
+           
+        dispatcher.utter_message(text=message)
+
+        return []
+
+class ActionPlayerGameweekPointsQuery(Action):
+
+    def name(self) -> Text:
+         return "action_player_gameweek_points_query"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        entities = tracker.latest_message['entities']
+        print(entities)
+
+        
+        for e in entities:
+            if e['entity'] == 'player':
+                name = e['value']
+
+            player_query_row, player_query_first_name, player_query_last_name, player_query_team_name, player_query_goals, \
+                player_query_assists, player_query_cost, player_query_selection, player_query_gameweek_points, \
+                player_query_total_points, player_query_next_fixture, goal_text, assist_text = get_player_query_row(name)
+
+            message = (f'{player_query_first_name} {player_query_last_name} got {player_query_gameweek_points} points this week.')
+                    
+           
+        dispatcher.utter_message(text=message)
+
+        return []
+
+class ActionPlayerNextFixtureQuery(Action):
+
+    def name(self) -> Text:
+         return "action_player_next_fixture_query"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        entities = tracker.latest_message['entities']
+        print(entities)
+
+        
+        for e in entities:
+            if e['entity'] == 'player':
+                name = e['value']
+
+            player_query_row, player_query_first_name, player_query_last_name, player_query_team_name, player_query_goals, \
+                player_query_assists, player_query_cost, player_query_selection, player_query_gameweek_points, \
+                player_query_total_points, player_query_next_fixture, goal_text, assist_text = get_player_query_row(name)
+
+            message = (f'{player_query_first_name} {player_query_last_name} is playing {player_query_next_fixture} next.')
+                    
+           
+        dispatcher.utter_message(text=message)
+
+        return []
+
+class ActionPlayerTeamNameQuery(Action):
+
+    def name(self) -> Text:
+         return "action_player_team_name_query"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        entities = tracker.latest_message['entities']
+        print(entities)
+
+        
+        for e in entities:
+            if e['entity'] == 'player':
+                name = e['value']
+
+            player_query_row, player_query_first_name, player_query_last_name, player_query_team_name, player_query_goals, \
+                player_query_assists, player_query_cost, player_query_selection, player_query_gameweek_points, \
+                player_query_total_points, player_query_next_fixture, goal_text, assist_text = get_player_query_row(name)
+
+            message = (f'{player_query_first_name} {player_query_last_name} plays for {player_query_team_name}.')
+                    
+           
+        dispatcher.utter_message(text=message)
+
+        return []
