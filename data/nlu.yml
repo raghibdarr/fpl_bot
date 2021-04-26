@@ -98,7 +98,7 @@ nlu:
     - which [defender](position) has the most points?
     - which [goalkeeper](position) has the most points?
 
-- intent: player_points_query
+- intent: player_total_points_query
   examples: |
     - how many points does [Hayden](player) have?
     - how many points does [Lallana](player) have?
@@ -112,11 +112,74 @@ nlu:
     - how many goals has [Gibson](player) scored?
     - how many goals has [Walton](player) scored? 
 
+- intent: player_assists_query
+  examples: |
+    - how many assists does [Benson](player) have?
+    - how many assists does [Driscoll-Glennon](player) have?
+    - how many goals has [Goodridge](player) assisted?
+    - how many goals has [Norris](player) assisted? 
+
+- intent: player_cost_query
+  examples: |
+    - how much does [Peacock-Farrell](player) cost?
+    - what's the price of [Karbownik](player)?
+    - what is the price of [McGill](player)?
+    - what's the cost of [Zeqiri](player)?
+    - what is the cost of [Montoya](player)?
+    - how much is [Chukwuemeka](player)? 
+    - how much is [Philogene-Bidace](player)'s price?
+    - what is [Benson](player)'s price? 
+    - how much is [Goodridge](player)'s cost?
+    - how much is [Gibson](player)'s price? 
+    - how much money does [Walton](player) cost? 
+ 
+- intent: player_selection_query
+  examples: |
+    - how many players have selected [Peacock-Farrell](player)?
+    - how many FPL players have selected [Karbownik](player)?
+    - how many players have chosen [McGill](player)?
+    - how many FPL players have chosen [Zeqiri](player)?
+    - how many people have selected [Montoya](player)?
+    - how many people have got [Benson](player)?
+    - how many people have [McGill](player)?
+    - what's the percentage of people who have [El Mohamady](player)?
+    - how many players have selected [Odegaard](player) for their team?
+    - how many people have selected [Azeez](player) for their team?
+    - how many people have got [Martinelli](player) in their team?
+    - how many people have [Saka](player) in their team?
+    - what's the percentage of people who have [Guendouzi](player) in their team?
+    - how popular is [Nketiah](player)?
+
+- intent: player_gameweek_points_query
+  examples: |
+    - how many points did [Aubameyang](player) get this week?
+    - how many points does [Lamptey](player) have this week?
+   
+- intent: player_next_fixture_query
+  examples: |
+    - which team is [Aubameyang](player) against next?
+    - which team is [Willian](player) against next match?
+    - which team is [Saliba](player) against next gameweek?
+    - who is [Runarsson](player) going to play next?
+    - who is [Macey](player) going to play against next match?
+    - who is [Macey](player) playing next match?
+    - who is [Macey](player) playing next ?
+    - what's [Elneny](player)'s next match?
+    - what's [Partey](player)'s next fixture?
+    - what's [Elneny](player)'s next opponents?
+    - who are [Elneny](player)'s next opponents?
+
+- intent: player_team_name_query
+  examples: |
+    - which team is [Taylor](player) from?
+    - which team does [Vydra](player) for?
+    - who does [Gibson](player) for?
+
 - lookup: player
   examples: |
     - Ozil
     - Papastathopoulos
-    - Luiz
+    - David Luiz
     - Aubameyang
     - Soares
     - Lacazette
@@ -152,7 +215,7 @@ nlu:
     - Heaton
     - El Mohamady
     - Lansbury
-    - Taylor
+    - Neil Taylor
     - Steer
     - Hourihane
     - Peleteiro Romallo
@@ -171,21 +234,21 @@ nlu:
     - Guilbert
     - Moraes
     - Samatta
-    - Davis
+    - Keinan Davis
     - Vassilev
-    - Luiz
+    - Douglas Luiz
     - Barkley
     - Cash
     - Watkins
-    - Traore
+    - Bertrand Traore
     - Ramsey
     - Sanson
-    - Hayden
+    - Kaine Hayden
     - Chukwuemeka
-    - Philogene-Bidace
+    - Philogene Bidace
     - Murray
     - Lallana
-    - Gro
+    - Gross
     - Duffy
     - Propper
     - Mooy
@@ -202,7 +265,7 @@ nlu:
     - Izquierdo
     - Clarke
     - White
-    - Fernandes
+    - Bernardo
     - Bissouma
     - Lamptey
     - Connolly
@@ -213,7 +276,7 @@ nlu:
     - Molumby
     - Zeqiri
     - Welbeck
-    - Sanchez
+    - Robert Sanchez
     - Tau
     - Moder
     - Khadra
@@ -223,14 +286,14 @@ nlu:
     - McGill
     - Karbownik
     - Caicedo
-    - Stephens
+    - Dale Stephens
     - Tarkowski
     - Bardsley
     - Pieters
     - Cork
-    - Long
-    - Rodriguez
-    - Barnes
+    - Kevin Long
+    - Jay Rodriguez
+    - Ashley Barnes
     - Mee
     - Westwood
     - Gudmundsson
@@ -240,12 +303,12 @@ nlu:
     - Gibson
     - Brady
     - Pope
-    - Taylor
+    - Charlie Taylor
     - Brownhill
     - Peacock-Farrell
     - McNeil
     - Dunne
-    - Thomas
+    - Bobby Thomas
     - Benson
     - Driscoll-Glennon
     - Goodridge
@@ -259,7 +322,7 @@ nlu:
     - Azpilicueta
     - Giroud
     - Alonso
-    - Frello Filho
+    - Jorginho
     - Kovacic
     - Rudiger
     - Zouma
@@ -273,13 +336,13 @@ nlu:
     - Pulisic
     - Mount
     - Tomori
-    - Hudson-Odoi
-    - James
+    - Hudson Odoi
+    - Reece James
     - Gilmour
     - Chilwell
-    - Thiago
+    - Thiago Silva
     - Havertz
-    - Mendy
+    - Edouard Mendy
     - Ziger
     - Anjorin
     - Batshuayi
@@ -289,13 +352,13 @@ nlu:
     - Guaita
     - Tomkins
     - McArthur
-    - McCarthy
+    - James McCarthy
     - Benteke
     - Kouyate
-    - Ward
+    - Joel Ward
     - Kelly
     - Wickham
-    - Townsend
+    - Andros Townsend
     - Milivojevic
     - van Aanholt
     - Ayew
@@ -311,11 +374,11 @@ nlu:
     - Woods
     - Inniss
     - Clyne
-    - Henderson
+    - Stephen Henderson
     - Butland
     - Mateta
     - Hannam
-    - Rak-Sakyi
+    - Rak Sakyi
     - Delph
     - Sigurdsson
     - Lossl
@@ -325,21 +388,21 @@ nlu:
     - Digne
     - Keane
     - Pickford
-    - Gomes
+    - Andre Gomes
     - Iwobi
     - Kenny
     - Gbamin
     - Mina
-    - Davies
-    - Calvert-Lewin
+    - Tom Davies
+    - Calvert Lewin
     - Holgate
-    - de Andrade
+    - Richarlison
     - Virginia
-    - Gordon
+    - Anthony Gordon
     - Kean
     - Branthwaite
     - Allan
-    - Rodriguez
+    - James Rodriguez
     - Doucoure
     - Nkounkou
     - Godfrey
@@ -353,7 +416,7 @@ nlu:
     - Tyrer
     - Welch
     - Price
-    - Loftus-Cheek
+    - Loftus Cheek
     - Agosto
     - McDonald
     - Le Marchand
@@ -364,8 +427,8 @@ nlu:
     - Hector
     - Christie
     - Kebano
-    - Decordova-Reid
-    - Bryan
+    - Decordova Reid
+    - Joe Bryan
     - Bettinelli
     - Mitrovic
     - Mawson
@@ -375,9 +438,9 @@ nlu:
     - Seri
     - Kamara
     - Zambo Anguissa
-    - Sessegnon
+    - Steven Sessegnon
     - Reed
-    - Robinson
+    - Antonee Robinson
     - Lemina
     - Areola
     - Tete
@@ -392,13 +455,13 @@ nlu:
     - Schmeichel
     - Fuchs
     - Evans
-    - Silva
+    - Adrien Silva
     - Albrighton
-    - James
-    - Ward
+    - Matty James
+    - Danny Ward
     - Vardy
     - Praet
-    - Pereira
+    - Ricardo Pereira
     - Amartey
     - Tielemans
     - Perez
@@ -406,23 +469,23 @@ nlu:
     - Maddison
     - Iheanacho
     - Choudhury
-    - Barnes
+    - Harvey Barnes
     - Ndidi
     - Benkovic
     - Soyuncu
     - Justin
-    - Thomas
+    - Luke Thomas
     - Castagne
-    - Mendy
+    - Nampalys Mendy
     - Under
     - Fofana
     - Slimani
-    - Daley-Campbell
+    - Daley Campbell
     - Leshabela
     - Tavares
     - Flynn
     - Suengchitthawon
-    - Hernandez
+    - Pablo Hernandez
     - Casilla Cortes
     - Cooper
     - Douglas
@@ -433,34 +496,36 @@ nlu:
     - Alioski
     - Bamford
     - Harrison
-    - Phillips
+    - Kalvin Phillips
     - Costa
     - Roberts
     - Grot
     - Miazek
-    - Poveda-Ocampo
+    - Poveda Ocampo
     - Shackleton
     - Struijk
-    - Stevens
+    - Jordan Stevens
     - Meslier
-    - Davis
+    - Leif Davis
     - Casey
     - Koch
     - Moreno
     - Caprile
     - Bogusz
     - Llorente
-    - Dias Belloli
+    - Raphinha
     - Jenkins
     - Huggins
-    - Cresswell
+    - Charlie Cresswell
     - Gelhardt
     - Berardi
+    - Sam Greenwood
+    - Summerville
     - Milner
     - Tsimikas
     - Wijnaldum
-    - Henderson
-    - San Miguel
+    - Jordan Henderson
+    - Adrian
     - Matip
     - Shaqiri
     - Oxlade-Chamberlain
@@ -468,29 +533,29 @@ nlu:
     - van Dijk
     - Mane
     - Becker
-    - Tavares
+    - Fabinho
     - Salah
     - Robertson
     - Origi
-    - Wilson
+    - Harry Wilson
     - Alexander-Arnold
     - Gomez
     - Keita
-    - Jones
-    - Williams
+    - Curtis Jones
+    - Neco Williams
     - Elliott
     - Jota
-    - Alcantara
+    - Thiago
     - Kelleher
-    - Phillips
-    - Williams
+    - Nathaniel Phillips
+    - Rhys Williams
     - Clarkson
     - Cain
     - Kabak
     - Davies
     - Hughes
     - Ojrzynski
-    - Luiz Rosa
+    - Fernandinho
     - Bravo
     - Aguero
     - Otamendi
@@ -498,19 +563,19 @@ nlu:
     - Gundogan
     - De Bruyne
     - Stones
-    - Mendy
+    - Benjamin Mendy
     - Mahrez
     - Sterling
     - Cancelo
-    - Moraes
+    - Ederson
     - Ake
     - Laporte
-    - Silva
+    - Bernardo Silva
     - Jesus
     - Zinchenko
     - Foden
     - Doyle
-    - Hernandez
+    - Rodri
     - Torres
     - Garcia
     - Bernabe
@@ -523,7 +588,7 @@ nlu:
     - Nmecha
     - Mbete
     - Harwood-Bellis
-    - Gomes
+    - Claudio Gomes
     - Romero
     - Mata
     - de Gea
@@ -532,34 +597,34 @@ nlu:
     - Rojo
     - Matic
     - Pogba
-    - Jones
+    - Phil Jones
     - Maguire
-    - Rodrigues de Paula Santos
+    - Fred
     - Shaw
-    - Fernandes
+    - Bruno Fernandes
     - Martial
-    - Pereira
-    - Henderson
+    - Andreas Pereira
+    - Dean Henderson
     - Rashford
     - Tuanzebe
     - Lindelof
     - McTominay
     - Bailly
-    - James
-    - Fosu-Mensah
+    - Daniel James
+    - Fosu Mensah
     - Wan-Bissaka
-    - Dalot Teixeira
-    - Greenwood
+    - Dalot
+    - Mason Greenwood
     - Chong
     - Garner
-    - Williams
+    - Brandon Williams
     - Mengi
     - van de Beek
     - Telles
     - Cavani
     - Pellistri
-    - Grant
-    - Diallo
+    - Lee Grant
+    - Amad Diallo
     - Shoretire
     - Bishop
     - Willock
@@ -579,34 +644,34 @@ nlu:
     - Krafth
     - Schar
     - Yedlin
-    - Hayden
+    - Isaac Hayden
     - Aarons
-    - Saint-Maximin
+    - Saint Maximin
     - Almiron
-    - Apolinario de Lira
+    - Joelinton
     - Muto
-    - Watts
-    - Longstaff
+    - Kelland Watts
+    - Sean Longstaff
     - Hendrick
-    - Longstaff
+    - Matthew Longstaff
     - Gillespie
     - Murphy
-    - Wilson
+    - Callum Wilson
     - Fraser
-    - Lewis
-    - Anderson
+    - Jamal Lewis
+    - Elliot Anderson
     - Langley
     - Brewster
     - Sharp
     - McGoldrick
     - Basham
     - Fleck
-    - Stevens
+    - Enda Stevens
     - Moore
     - Norwood
     - Foderingham
     - Baldock
-    - Robinson
+    - Jack Robinson
     - Egan
     - O'Connell
     - Lundstram
@@ -622,28 +687,28 @@ nlu:
     - Lowe
     - Jagielka
     - Verrips
-    - Bryan
+    - Kean Bryan
     - Hackford
-    - Gordon
+    - Kyron Gordon
     - Ndiaye
     - Brunt
-    - Maguire
+    - Frankie Maguire
     - Walcott
     - Minamino
-    - Long
+    - Shane Long
     - Bertrand
-    - McCarthy
+    - Alex McCarthy
     - Romeu Vidal
     - Redmond
     - Ings
-    - Stephens
+    - Jack Stephens
     - Armstrong
     - Vestergaard
-    - Ward-Prowse
+    - Ward Prowse
     - Gunn
     - Boufal
     - Sims
-    - Walker-Peters
+    - Walker Peters
     - Bednarek
     - Adams
     - Valery
@@ -654,14 +719,14 @@ nlu:
     - Salisu
     - Forster
     - Tella
-    - Diallo
+    - Ibrahima Diallo
     - N'Lundulu
     - Ramsay
     - Chauke
-    - Lewis
+    - Harry Lewis
     - Ferry
     - Tchaptchet
-    - Watts
+    - Caleb Watts
     - Jankewitz
     - Finnigan
     - Lloris
@@ -676,13 +741,13 @@ nlu:
     - Moura
     - Gazzaniga
     - Alli
-    - Davies
+    - Ben Davies
     - Hojbjerg
     - Winks
-    - Sanchez
-    - Sessegnon
+    - Davinson Sanchez
+    - Ryan Sessegnon
     - Bergwijn
-    - Fernandes
+    - Gedson Fernandes
     - Tanganga
     - Lo Celso
     - Skipp
@@ -697,21 +762,21 @@ nlu:
     - Rodon
     - Devine
     - Scarlett
-    - Maitland-Niles
+    - Maitland Niles
     - Button
-    - Robinson
+    - Callum Robinson
     - Gibbs
-    - Robson-Kanu
+    - Robson Kanu
     - Livermore
     - Grosicki
-    - Phillips
+    - Matt Phillips
     - Bartley
     - Sawyers
     - Hegazy
     - Austin
     - Zohore
     - Johnstone
-    - Townsend
+    - Conor Townsend
     - Ajayi
     - Leko
     - Edwards
@@ -721,12 +786,12 @@ nlu:
     - Harper
     - Snodgrass
     - Diangana
-    - Pereira
+    - Matheus Pereira
     - Kipre
     - Ivanovic
     - Gallagher
     - Krovinovic
-    - Grant
+    - Karlan Grant
     - Peltier
     - Diaby
     - Lonergan
@@ -738,14 +803,14 @@ nlu:
     - Randolph
     - Fabianski
     - Ogbonna
-    - Jimenez
+    - Roberto Jimenez
     - Wilshere
-    - Cresswell
+    - Aaron Cresswell
     - Yarmolenko
     - Antonio
     - Fredericks
     - Lanzini
-    - Anderson
+    - Felipe Anderson
     - Haller
     - Masuaku
     - Balbuena
@@ -771,12 +836,12 @@ nlu:
     - Bennett
     - Boly
     - Coady
-    - Jimenez
+    - Raul Jimenez
     - Saiss
     - Otto
     - Bonatini
     - Dendoncker
-    - Traore
+    - Adama Traore
     - Neves
     - Buur
     - Podence
@@ -784,10 +849,10 @@ nlu:
     - Vinagre
     - Sarkic
     - Gibbs-White
-    - Lomba Neto
+    - Neto
     - Cavaco Jordao
     - Campana
-    - Silva
+    - Fabio Silva
     - Marcal
     - Ferreira
     - Hoever
@@ -803,6 +868,6 @@ nlu:
     - Sondergaard
     - Cutrone
     - Lonwijk
-    - Da Silva
+    - Jose
     - Bueno
 
