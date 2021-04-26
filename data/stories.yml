@@ -34,12 +34,46 @@ stories:
   - intent: striker_most_points
   - action: action_striker_most_points
 
-- story: player points query path
+- story: player total points query path
   steps:
-  - intent: player_points_query
-  - action: action_player_points_query
+  - intent: player_total_points_query
+  - action: action_player_total_points_query
 
 - story: player goals query path
   steps:
   - intent: player_goals_query
   - action: action_player_goals_query
+
+- story: player assists query path
+  steps:
+  - intent: player_assists_query
+  - action: action_player_assists_query
+
+- story: player cost query path
+  steps:
+  - intent: player_cost_query
+  - action: action_player_cost_query
+
+- story: player selection query path
+  steps:
+  - intent: player_selection_query
+  - action: action_player_selection_query
+
+- story: player gameweek points query path
+  steps:
+  - intent: player_gameweek_points_query
+  - action: action_player_gameweek_points_query
+
+- story: player next fixture query path
+  steps:
+  - intent: player_next_fixture_query
+  - action: action_player_next_fixture_query
+
+- story: player team name query path
+  steps:
+  - intent: player_team_name_query
+  - action: action_player_team_name_query
+
+
+
+
