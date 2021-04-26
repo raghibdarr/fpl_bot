@@ -11,6 +11,7 @@ intents:
   - hello_world
   - striker_most_points
   - player_points_query
+  - player_goals_query
 
 entities:
   - player
@@ -19,6 +20,7 @@ actions:
   - action_hello_world
   - action_striker_most_points
   - action_player_points_query
+  - action_player_goals_query
 
 responses:
   utter_greet:
