@@ -31,6 +31,40 @@ data_sheet = client.open_by_url(
     # "project latest")  # Comment out if bugs and uncomment line below
     "project backup")  # Open the spreadhseet
 
+def get_player_query_row(player_query):
+    player_cell = data_sheet.find(player_query)
+    query_row = player_cell.row
+    query_col = player_cell.col
+
+    player_row = data_sheet.row_values(query_row)
+    first_name = player_row[41]
+    last_name = player_row[42]
+    team_name = player_row[6]
+    goals = player_row[8]
+    assists = player_row[9]
+    cost = player_row[3]
+    selection = player_row[7]
+    gameweek_points = player_row[11]
+    total_points = player_row[12]
+    next_fixture = player_row[37]
+
+    if first_name == last_name:
+        first_name = ""
+
+    goal_formatting_text = "goals"
+    if goals == "":
+        goals = 0
+    elif goals == '1':
+        goal_formatting_text = "goal"
+
+    assist_formatting_text = "assists"
+    if assists == "":
+        assists = 0
+    elif assists == '1':
+        assist_formatting_text = "assist"
+
+    return player_row, first_name, last_name, team_name, goals, assists, cost, selection, gameweek_points, \
+        total_points, next_fixture, goal_formatting_text, assist_formatting_text
 
 
 class ActionHelloWorld(Action):
@@ -77,33 +111,12 @@ class ActionPlayerPointsQuery(Action):
         for e in entities:
             if e['entity'] == 'player':
                 name = e['value']
-                
-            test = data_sheet.find(name)
-            query_row = test.row
-            query_col = test.col
-            # print(query_row, query_col)
 
-            player_query_row = data_sheet.row_values(query_row)
-            player_query_first_name = player_query_row[41]
-            player_query_last_name = player_query_row[42]
+            player_query_row, player_query_first_name, player_query_last_name, player_query_team_name, player_query_goals, \
+                player_query_assists, player_query_cost, player_query_selection, player_query_gameweek_points, \
+                player_query_total_points, player_query_next_fixture, goal_text, assist_text = get_player_query_row(name)
 
-            player_query_goals = player_query_row[8]
-            goal_text = "goals"
-            if player_query_goals == "":
-                player_query_goals = 0
-            elif player_query_goals == '1':
-                goal_text = "goal"
-
-            player_query_assists = player_query_row[9]
-            assist_text = "assists"
-            if player_query_assists == "":
-                player_query_assists = 0
-            elif player_query_assists == '1':
-                assist_text = "assist"
-
-            message = (
-                f'Player is {player_query_first_name} {player_query_last_name}. '
-                f'He has {player_query_goals} {goal_text} and {player_query_assists} {assist_text}.')
+            message = (f'{player_query_first_name} {player_query_last_name} has {player_query_total_points} points in total.')
                     
            
         dispatcher.utter_message(text=message)
