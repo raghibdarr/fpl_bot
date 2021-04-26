@@ -12,6 +12,14 @@ intents:
   - striker_most_points
   - player_points_query
 
+entities:
+  - player
+
+actions:
+  - action_hello_world
+  - action_striker_most_points
+  - action_player_points_query
+
 responses:
   utter_greet:
   - text: "Hey! How are you?"
