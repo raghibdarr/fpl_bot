@@ -10,8 +10,14 @@ intents:
   - bot_challenge
   - hello_world
   - striker_most_points
-  - player_points_query
+  - player_total_points_query
   - player_goals_query
+  - player_assists_query
+  - player_cost_query
+  - player_selection_query
+  - player_gameweek_points_query
+  - player_next_fixture_query
+  - player_team_name_query
 
 entities:
   - player
@@ -19,8 +25,14 @@ entities:
 actions:
   - action_hello_world
   - action_striker_most_points
-  - action_player_points_query
+  - action_player_total_points_query
   - action_player_goals_query
+  - action_player_assists_query
+  - action_player_cost_query
+  - action_player_selection_query
+  - action_player_gameweek_points_query
+  - action_player_next_fixture_query
+  - action_player_team_name_query
 
 responses:
   utter_greet:
