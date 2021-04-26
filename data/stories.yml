@@ -38,3 +38,8 @@ stories:
   steps:
   - intent: player_points_query
   - action: action_player_points_query
+
+- story: player goals query path
+  steps:
+  - intent: player_goals_query
+  - action: action_player_goals_query
