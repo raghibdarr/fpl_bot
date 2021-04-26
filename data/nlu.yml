@@ -100,10 +100,17 @@ nlu:
 
 - intent: player_points_query
   examples: |
-    - how many points does [Vardy](player) have?
-    - how many points does [Chilwell](player) have?
-    - how many points does [Kane](player) have?
-    - how many points does [De Bruyne](player) have? 
+    - how many points does [Hayden](player) have?
+    - how many points does [Lallana](player) have?
+    - how many points does [Gilmour](player) have?
+    - how many points does [Townsend](player) have? 
+
+- intent: player_goals_query
+  examples: |
+    - how many goals does [Tavares](player) have?
+    - how many goals does [Leshabela](player) have?
+    - how many goals has [Gibson](player) scored?
+    - how many goals has [Walton](player) scored? 
 
 - lookup: player
   examples: |
