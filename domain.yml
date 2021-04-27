@@ -36,7 +36,7 @@ actions:
 
 responses:
   utter_greet:
-  - text: "Hey! How are you?"
+  - text: "Hi! I'm a Fantasy Premier League bot. Example questions are: How many points did Bruno Fernandes get? Or, How many goals has Aubameyang scored?"
 
   utter_cheer_up:
   - text: "Here is something to cheer you up:"
