@@ -108,7 +108,7 @@ nlu:
 - intent: player_goals_query
   examples: |
     - how many goals does [Tavares](player) have?
-    - how many goals does [Leshabela](player) have?
+    - how many goals does [Bruno Fernandes](player) have?
     - how many goals has [Gibson](player) scored?
     - how many goals has [Walton](player) scored? 
 
@@ -123,11 +123,11 @@ nlu:
   examples: |
     - how much does [Peacock-Farrell](player) cost?
     - what's the price of [Karbownik](player)?
-    - what is the price of [McGill](player)?
+    - what is the price of [Alexander-Arnold](player)?
     - what's the cost of [Zeqiri](player)?
     - what is the cost of [Montoya](player)?
     - how much is [Chukwuemeka](player)? 
-    - how much is [Philogene-Bidace](player)'s price?
+    - how much is [Philogene Bidace](player)'s price?
     - what is [Benson](player)'s price? 
     - how much is [Goodridge](player)'s cost?
     - how much is [Gibson](player)'s price? 
@@ -135,18 +135,18 @@ nlu:
  
 - intent: player_selection_query
   examples: |
-    - how many players have selected [Peacock-Farrell](player)?
+    - how many players have selected [Bruno Fernandes](player)?
     - how many FPL players have selected [Karbownik](player)?
     - how many players have chosen [McGill](player)?
     - how many FPL players have chosen [Zeqiri](player)?
     - how many people have selected [Montoya](player)?
     - how many people have got [Benson](player)?
-    - how many people have [McGill](player)?
+    - how many people have [Bruno Fernandes](player)?
     - what's the percentage of people who have [El Mohamady](player)?
     - how many players have selected [Odegaard](player) for their team?
     - how many people have selected [Azeez](player) for their team?
     - how many people have got [Martinelli](player) in their team?
-    - how many people have [Saka](player) in their team?
+    - how many people have [Alexander-Arnold](player) in their team?
     - what's the percentage of people who have [Guendouzi](player) in their team?
     - how popular is [Nketiah](player)?
 
@@ -154,6 +154,7 @@ nlu:
   examples: |
     - how many points did [Aubameyang](player) get this week?
     - how many points does [Lamptey](player) have this week?
+    - how many points did [Lamptey](player) get last week?
    
 - intent: player_next_fixture_query
   examples: |
@@ -164,7 +165,7 @@ nlu:
     - who is [Macey](player) going to play against next match?
     - who is [Macey](player) playing next match?
     - who is [Macey](player) playing next ?
-    - what's [Elneny](player)'s next match?
+    - what's [Alexander-Arnold](player)'s next match?
     - what's [Partey](player)'s next fixture?
     - what's [Elneny](player)'s next opponents?
     - who are [Elneny](player)'s next opponents?
@@ -172,7 +173,7 @@ nlu:
 - intent: player_team_name_query
   examples: |
     - which team is [Taylor](player) from?
-    - which team does [Vydra](player) for?
+    - which team does [Bruno Fernandes](player) for?
     - who does [Gibson](player) for?
 
 - lookup: player
