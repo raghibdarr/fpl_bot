@@ -28,10 +28,11 @@ client = gspread.authorize(creds)
 
 data_sheet = client.open_by_url(
     "https://docs.google.com/spreadsheets/d/1mCio8I0xCLp2vKQU9AkPyq80t43MGSDqjR3z-GCF9r0/edit#gid=1338220169").worksheet(
-    # "project latest")  # Comment out if bugs and uncomment line below
-    "project backup")  # Open the spreadhseet
+     "project latest")  # Comment out if bugs and uncomment line below
+    # "project backup")  # Open the spreadhseet
 
 def get_player_query_row(player_query):
+    player_query = player_query.title()
     player_cell = data_sheet.find(player_query)
     query_row = player_cell.row
     query_col = player_cell.col
@@ -48,8 +49,10 @@ def get_player_query_row(player_query):
     total_points = player_row[12]
     next_fixture = player_row[37]
 
-    if first_name == last_name:
+    if first_name == last_name:         # players with nicknames fix e.g. Allan, Fred, Jorginho, etc.
         first_name = ""
+    elif first_name == ("" or " "):     # duplicate surnames fix e.g. Reece James, Daniel James, etc.
+        first_name = last_name[0]
 
     goal_formatting_text = "goals"
     if goals == "":
@@ -63,8 +66,14 @@ def get_player_query_row(player_query):
     elif assists == '1':
         assist_formatting_text = "assist"
 
+    point_formatting_text = "points"
+    if gameweek_points == "":
+        gameweek_points = 0
+    elif gameweek_points == '1':
+        point_formatting_text = "point"
+
     return player_row, first_name, last_name, team_name, goals, assists, cost, selection, gameweek_points, \
-        total_points, next_fixture, goal_formatting_text, assist_formatting_text
+           total_points, next_fixture, goal_formatting_text, assist_formatting_text, point_formatting_text
 
 
 class ActionHelloWorld(Action):
@@ -114,7 +123,7 @@ class ActionPlayerTotalPointsQuery(Action):
 
             player_query_row, player_query_first_name, player_query_last_name, player_query_team_name, player_query_goals, \
                 player_query_assists, player_query_cost, player_query_selection, player_query_gameweek_points, \
-                player_query_total_points, player_query_next_fixture, goal_text, assist_text = get_player_query_row(name)
+                player_query_total_points, player_query_next_fixture, goal_text, assist_text, point_text = get_player_query_row(name)
 
             message = (f'{player_query_first_name} {player_query_last_name} has {player_query_total_points} points in total.')
                     
@@ -142,7 +151,7 @@ class ActionPlayerGoalsQuery(Action):
 
             player_query_row, player_query_first_name, player_query_last_name, player_query_team_name, player_query_goals, \
                 player_query_assists, player_query_cost, player_query_selection, player_query_gameweek_points, \
-                player_query_total_points, player_query_next_fixture, goal_text, assist_text = get_player_query_row(name)
+                player_query_total_points, player_query_next_fixture, goal_text, assist_text, point_text = get_player_query_row(name)
 
             message = (f'{player_query_first_name} {player_query_last_name} has scored {player_query_goals} {goal_text}.')
                     
@@ -170,7 +179,7 @@ class ActionPlayerAssistsQuery(Action):
 
             player_query_row, player_query_first_name, player_query_last_name, player_query_team_name, player_query_goals, \
                 player_query_assists, player_query_cost, player_query_selection, player_query_gameweek_points, \
-                player_query_total_points, player_query_next_fixture, goal_text, assist_text = get_player_query_row(name)
+                player_query_total_points, player_query_next_fixture, goal_text, assist_text, point_text = get_player_query_row(name)
 
             message = (f'{player_query_first_name} {player_query_last_name} has {player_query_assists} {assist_text}.')
                     
@@ -198,7 +207,7 @@ class ActionPlayerCostQuery(Action):
 
             player_query_row, player_query_first_name, player_query_last_name, player_query_team_name, player_query_goals, \
                 player_query_assists, player_query_cost, player_query_selection, player_query_gameweek_points, \
-                player_query_total_points, player_query_next_fixture, goal_text, assist_text = get_player_query_row(name)
+                player_query_total_points, player_query_next_fixture, goal_text, assist_text, point_text = get_player_query_row(name)
 
             message = (f"{player_query_first_name} {player_query_last_name}'s price is £{player_query_cost} today.")
                     
@@ -226,7 +235,7 @@ class ActionPlayerSelectionQuery(Action):
 
             player_query_row, player_query_first_name, player_query_last_name, player_query_team_name, player_query_goals, \
                 player_query_assists, player_query_cost, player_query_selection, player_query_gameweek_points, \
-                player_query_total_points, player_query_next_fixture, goal_text, assist_text = get_player_query_row(name)
+                player_query_total_points, player_query_next_fixture, goal_text, assist_text, point_text = get_player_query_row(name)
 
             message = (f'{player_query_first_name} {player_query_last_name} has been selected '
                        f'by {player_query_selection}% of FPL players.')
@@ -255,9 +264,9 @@ class ActionPlayerGameweekPointsQuery(Action):
 
             player_query_row, player_query_first_name, player_query_last_name, player_query_team_name, player_query_goals, \
                 player_query_assists, player_query_cost, player_query_selection, player_query_gameweek_points, \
-                player_query_total_points, player_query_next_fixture, goal_text, assist_text = get_player_query_row(name)
+                player_query_total_points, player_query_next_fixture, goal_text, assist_text, point_text = get_player_query_row(name)
 
-            message = (f'{player_query_first_name} {player_query_last_name} got {player_query_gameweek_points} points this week.')
+            message = (f'{player_query_first_name} {player_query_last_name} got {player_query_gameweek_points} {point_text} this week.')
                     
            
         dispatcher.utter_message(text=message)
@@ -283,7 +292,7 @@ class ActionPlayerNextFixtureQuery(Action):
 
             player_query_row, player_query_first_name, player_query_last_name, player_query_team_name, player_query_goals, \
                 player_query_assists, player_query_cost, player_query_selection, player_query_gameweek_points, \
-                player_query_total_points, player_query_next_fixture, goal_text, assist_text = get_player_query_row(name)
+                player_query_total_points, player_query_next_fixture, goal_text, assist_text, point_text = get_player_query_row(name)
 
             message = (f'{player_query_first_name} {player_query_last_name} is playing {player_query_next_fixture} next.')
                     
@@ -311,7 +320,7 @@ class ActionPlayerTeamNameQuery(Action):
 
             player_query_row, player_query_first_name, player_query_last_name, player_query_team_name, player_query_goals, \
                 player_query_assists, player_query_cost, player_query_selection, player_query_gameweek_points, \
-                player_query_total_points, player_query_next_fixture, goal_text, assist_text = get_player_query_row(name)
+                player_query_total_points, player_query_next_fixture, goal_text, assist_text, point_text = get_player_query_row(name)
 
             message = (f'{player_query_first_name} {player_query_last_name} plays for {player_query_team_name}.')
                     
