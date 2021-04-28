@@ -33,6 +33,13 @@ data_sheet = client.open_by_url(
 
 def get_player_query_row(player_query):
     player_query = player_query.title()
+
+    # handle names beginning with 'Mc' properly e.g. McBurnie or McGoldrick
+    if player_query[0:2] == "Mc" or player_query[0:2] == "mc":
+        mc = "Mc"
+        temp = player_query[2:].title()
+        player_query = mc + temp
+
     player_cell = data_sheet.find(player_query)
     query_row = player_cell.row
     query_col = player_cell.col
