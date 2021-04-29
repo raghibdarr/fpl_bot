@@ -123,16 +123,22 @@ class ActionPlayerTotalPointsQuery(Action):
         entities = tracker.latest_message['entities']
         print(entities)
 
-        
+        message = "Sorry, I wasn't able to understand you. If you're trying to ask me about a player, please make sure you pronounced or spelled their name correctly."
+
         for e in entities:
             if e['entity'] == 'player':
                 name = e['value']
 
-            player_query_row, player_query_first_name, player_query_last_name, player_query_team_name, player_query_goals, \
-                player_query_assists, player_query_cost, player_query_selection, player_query_gameweek_points, \
-                player_query_total_points, player_query_next_fixture, goal_text, assist_text, point_text = get_player_query_row(name)
+            try:
+                player_query_row, player_query_first_name, player_query_last_name, player_query_team_name, player_query_goals, \
+                    player_query_assists, player_query_cost, player_query_selection, player_query_gameweek_points, \
+                    player_query_total_points, player_query_next_fixture, goal_text, assist_text, point_text = get_player_query_row(name)
 
-            message = (f'{player_query_first_name} {player_query_last_name} has {player_query_total_points} points in total.')
+                message = (f'{player_query_first_name} {player_query_last_name} has {player_query_total_points} points in total.')
+            
+            except gspread.exceptions.CellNotFound:
+                message = (f"I couldn't find the player you're looking for. Please try again, and make sure you pronounced or spelled their name correctly.")        
+
                     
            
         dispatcher.utter_message(text=message)
@@ -151,17 +157,22 @@ class ActionPlayerGoalsQuery(Action):
         entities = tracker.latest_message['entities']
         print(entities)
 
-        
+        message = "Sorry, I wasn't able to understand you. If you're trying to ask me about a player, please make sure you pronounced or spelled their name correctly."
+
         for e in entities:
             if e['entity'] == 'player':
                 name = e['value']
 
-            player_query_row, player_query_first_name, player_query_last_name, player_query_team_name, player_query_goals, \
-                player_query_assists, player_query_cost, player_query_selection, player_query_gameweek_points, \
-                player_query_total_points, player_query_next_fixture, goal_text, assist_text, point_text = get_player_query_row(name)
+            try:
+                player_query_row, player_query_first_name, player_query_last_name, player_query_team_name, player_query_goals, \
+                    player_query_assists, player_query_cost, player_query_selection, player_query_gameweek_points, \
+                    player_query_total_points, player_query_next_fixture, goal_text, assist_text, point_text = get_player_query_row(name)
 
-            message = (f'{player_query_first_name} {player_query_last_name} has scored {player_query_goals} {goal_text}.')
-                    
+                message = (f'{player_query_first_name} {player_query_last_name} has scored {player_query_goals} {goal_text}.')
+
+            except gspread.exceptions.CellNotFound:
+                message = (f"I couldn't find the player you're looking for. Please try again, and make sure you pronounced or spelled their name correctly.")        
+    
            
         dispatcher.utter_message(text=message)
 
@@ -179,17 +190,23 @@ class ActionPlayerAssistsQuery(Action):
         entities = tracker.latest_message['entities']
         print(entities)
 
-        
+        message = "Sorry, I wasn't able to understand you. If you're trying to ask me about a player, please make sure you pronounced or spelled their name correctly."
+
+
         for e in entities:
             if e['entity'] == 'player':
                 name = e['value']
 
-            player_query_row, player_query_first_name, player_query_last_name, player_query_team_name, player_query_goals, \
-                player_query_assists, player_query_cost, player_query_selection, player_query_gameweek_points, \
-                player_query_total_points, player_query_next_fixture, goal_text, assist_text, point_text = get_player_query_row(name)
+            try:
+                player_query_row, player_query_first_name, player_query_last_name, player_query_team_name, player_query_goals, \
+                    player_query_assists, player_query_cost, player_query_selection, player_query_gameweek_points, \
+                    player_query_total_points, player_query_next_fixture, goal_text, assist_text, point_text = get_player_query_row(name)
 
-            message = (f'{player_query_first_name} {player_query_last_name} has {player_query_assists} {assist_text}.')
-                    
+                message = (f'{player_query_first_name} {player_query_last_name} has {player_query_assists} {assist_text}.')
+
+            except gspread.exceptions.CellNotFound:
+                message = (f"I couldn't find the player you're looking for. Please try again, and make sure you pronounced or spelled their name correctly.")        
+
            
         dispatcher.utter_message(text=message)
 
@@ -207,16 +224,23 @@ class ActionPlayerCostQuery(Action):
         entities = tracker.latest_message['entities']
         print(entities)
 
-        
+        message = "Sorry, I wasn't able to understand you. If you're trying to ask me about a player, please make sure you pronounced or spelled their name correctly."
+
+
         for e in entities:
             if e['entity'] == 'player':
                 name = e['value']
 
-            player_query_row, player_query_first_name, player_query_last_name, player_query_team_name, player_query_goals, \
-                player_query_assists, player_query_cost, player_query_selection, player_query_gameweek_points, \
-                player_query_total_points, player_query_next_fixture, goal_text, assist_text, point_text = get_player_query_row(name)
+            try:
+                player_query_row, player_query_first_name, player_query_last_name, player_query_team_name, player_query_goals, \
+                    player_query_assists, player_query_cost, player_query_selection, player_query_gameweek_points, \
+                    player_query_total_points, player_query_next_fixture, goal_text, assist_text, point_text = get_player_query_row(name)
 
-            message = (f"{player_query_first_name} {player_query_last_name}'s price is £{player_query_cost} today.")
+                message = (f"{player_query_first_name} {player_query_last_name}'s price is £{player_query_cost} today.")
+            
+            except gspread.exceptions.CellNotFound:
+                message = (f"I couldn't find the player you're looking for. Please try again, and make sure you pronounced or spelled their name correctly.")        
+
                     
            
         dispatcher.utter_message(text=message)
@@ -235,18 +259,22 @@ class ActionPlayerSelectionQuery(Action):
         entities = tracker.latest_message['entities']
         print(entities)
 
-        
+        message = "Sorry, I wasn't able to understand you. If you're trying to ask me about a player, please make sure you pronounced or spelled their name correctly."
+
+
         for e in entities:
             if e['entity'] == 'player':
                 name = e['value']
 
-            player_query_row, player_query_first_name, player_query_last_name, player_query_team_name, player_query_goals, \
-                player_query_assists, player_query_cost, player_query_selection, player_query_gameweek_points, \
-                player_query_total_points, player_query_next_fixture, goal_text, assist_text, point_text = get_player_query_row(name)
+            try:
+                player_query_row, player_query_first_name, player_query_last_name, player_query_team_name, player_query_goals, \
+                    player_query_assists, player_query_cost, player_query_selection, player_query_gameweek_points, \
+                    player_query_total_points, player_query_next_fixture, goal_text, assist_text, point_text = get_player_query_row(name)
 
-            message = (f'{player_query_first_name} {player_query_last_name} has been selected '
-                       f'by {player_query_selection}% of FPL players.')
-                    
+                message = (f'{player_query_first_name} {player_query_last_name} has been selected by {player_query_selection}% of FPL players.')
+
+            except gspread.exceptions.CellNotFound:
+                message = (f"I couldn't find the player you're looking for. Please try again, and make sure you pronounced or spelled their name correctly.")        
            
         dispatcher.utter_message(text=message)
 
@@ -264,17 +292,23 @@ class ActionPlayerGameweekPointsQuery(Action):
         entities = tracker.latest_message['entities']
         print(entities)
 
-        
+        message = "Sorry, I wasn't able to understand you. If you're trying to ask me about a player, please make sure you pronounced or spelled their name correctly."
+
+
         for e in entities:
             if e['entity'] == 'player':
                 name = e['value']
 
-            player_query_row, player_query_first_name, player_query_last_name, player_query_team_name, player_query_goals, \
-                player_query_assists, player_query_cost, player_query_selection, player_query_gameweek_points, \
-                player_query_total_points, player_query_next_fixture, goal_text, assist_text, point_text = get_player_query_row(name)
+            try:
+                player_query_row, player_query_first_name, player_query_last_name, player_query_team_name, player_query_goals, \
+                    player_query_assists, player_query_cost, player_query_selection, player_query_gameweek_points, \
+                    player_query_total_points, player_query_next_fixture, goal_text, assist_text, point_text = get_player_query_row(name)
 
-            message = (f'{player_query_first_name} {player_query_last_name} got {player_query_gameweek_points} {point_text} this week.')
-                    
+                message = (f'{player_query_first_name} {player_query_last_name} got {player_query_gameweek_points} {point_text} this week.')
+
+            except gspread.exceptions.CellNotFound:
+                message = (f"I couldn't find the player you're looking for. Please try again, and make sure you pronounced or spelled their name correctly.")        
+    
            
         dispatcher.utter_message(text=message)
 
@@ -292,17 +326,22 @@ class ActionPlayerNextFixtureQuery(Action):
         entities = tracker.latest_message['entities']
         print(entities)
 
+        message = "Sorry, I wasn't able to understand you. If you're trying to ask me about a player, please make sure you pronounced or spelled their name correctly."
+
         
         for e in entities:
             if e['entity'] == 'player':
                 name = e['value']
 
-            player_query_row, player_query_first_name, player_query_last_name, player_query_team_name, player_query_goals, \
-                player_query_assists, player_query_cost, player_query_selection, player_query_gameweek_points, \
-                player_query_total_points, player_query_next_fixture, goal_text, assist_text, point_text = get_player_query_row(name)
+            try:
+                player_query_row, player_query_first_name, player_query_last_name, player_query_team_name, player_query_goals, \
+                    player_query_assists, player_query_cost, player_query_selection, player_query_gameweek_points, \
+                    player_query_total_points, player_query_next_fixture, goal_text, assist_text, point_text = get_player_query_row(name)
 
-            message = (f'{player_query_first_name} {player_query_last_name} is playing {player_query_next_fixture} next.')
-                    
+                message = (f'{player_query_first_name} {player_query_last_name} is playing {player_query_next_fixture} next.')
+            
+            except gspread.exceptions.CellNotFound:
+                message = (f"I couldn't find the player you're looking for. Please try again, and make sure you pronounced or spelled their name correctly.")        
            
         dispatcher.utter_message(text=message)
 
@@ -320,17 +359,22 @@ class ActionPlayerTeamNameQuery(Action):
         entities = tracker.latest_message['entities']
         print(entities)
 
+        message = "Sorry, I wasn't able to understand you. If you're trying to ask me about a player, please make sure you pronounced or spelled their name correctly."
+
         
         for e in entities:
             if e['entity'] == 'player':
                 name = e['value']
 
-            player_query_row, player_query_first_name, player_query_last_name, player_query_team_name, player_query_goals, \
-                player_query_assists, player_query_cost, player_query_selection, player_query_gameweek_points, \
-                player_query_total_points, player_query_next_fixture, goal_text, assist_text, point_text = get_player_query_row(name)
+            try:
+                player_query_row, player_query_first_name, player_query_last_name, player_query_team_name, player_query_goals, \
+                    player_query_assists, player_query_cost, player_query_selection, player_query_gameweek_points, \
+                    player_query_total_points, player_query_next_fixture, goal_text, assist_text, point_text = get_player_query_row(name)
 
-            message = (f'{player_query_first_name} {player_query_last_name} plays for {player_query_team_name}.')
-                    
+                message = (f'{player_query_first_name} {player_query_last_name} plays for {player_query_team_name}.')
+
+            except gspread.exceptions.CellNotFound:
+                message = (f"I couldn't find the player you're looking for. Please try again, and make sure you pronounced or spelled their name correctly.")        
            
         dispatcher.utter_message(text=message)
 
