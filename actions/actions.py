@@ -28,8 +28,35 @@ client = gspread.authorize(creds)
 
 data_sheet = client.open_by_url(
     "https://docs.google.com/spreadsheets/d/1mCio8I0xCLp2vKQU9AkPyq80t43MGSDqjR3z-GCF9r0/edit#gid=1338220169").worksheet(
-     "project latest")  # Comment out if bugs and uncomment line below
+    "project latest")  # Comment out if bugs and uncomment line below
     # "project backup")  # Open the spreadhseet
+
+transfer_picks_forward_sheet = client.open_by_url(
+    # latest sheet below - comment out and replace with backup if data is broken/updating
+    "https://docs.google.com/spreadsheets/d/1_rkHKgIPt3i_2uKr8kh5u4WZaYOLccNiiTx1xAaAo_Y/edit#gid=380389810").worksheet("Transfer Pick - FWD")  # Open the spreadhseet
+    # backup sheet below - comment out and replace with latest if data is working
+    # "https://docs.google.com/spreadsheets/d/1mCio8I0xCLp2vKQU9AkPyq80t43MGSDqjR3z-GCF9r0/edit#gid=1338220169").worksheet("Transfer Pick - FWD")  # Open the spreadhseet
+
+transfer_picks_midfielder_sheet = client.open_by_url(
+    # latest sheet below - comment out and replace with backup if data is broken/updating
+    "https://docs.google.com/spreadsheets/d/1_rkHKgIPt3i_2uKr8kh5u4WZaYOLccNiiTx1xAaAo_Y/edit#gid=380389810").worksheet(
+    "Transfer Pick - MID")  # Open the spreadhseet
+    # backup sheet below - comment out and replace with latest if data is working
+    # "https://docs.google.com/spreadsheets/d/1mCio8I0xCLp2vKQU9AkPyq80t43MGSDqjR3z-GCF9r0/edit#gid=1338220169").worksheet("Transfer Pick - MID")  # Open the spreadhseet
+
+transfer_picks_defender_sheet = client.open_by_url(
+    # latest sheet below - comment out and replace with backup if data is broken/updating
+    "https://docs.google.com/spreadsheets/d/1_rkHKgIPt3i_2uKr8kh5u4WZaYOLccNiiTx1xAaAo_Y/edit#gid=380389810").worksheet(
+    "Transfer Pick - DEF")  # Open the spreadhseet
+    # backup sheet below - comment out and replace with latest if data is working
+    # "https://docs.google.com/spreadsheets/d/1mCio8I0xCLp2vKQU9AkPyq80t43MGSDqjR3z-GCF9r0/edit#gid=1338220169").worksheet("Transfer Pick - DEF")  # Open the spreadhseet
+
+transfer_picks_goalkeeper_sheet = client.open_by_url(
+    # latest sheet below - comment out and replace with backup if data is broken/updating
+    "https://docs.google.com/spreadsheets/d/1_rkHKgIPt3i_2uKr8kh5u4WZaYOLccNiiTx1xAaAo_Y/edit#gid=380389810").worksheet(
+    "Transfer Pick - GK")  # Open the spreadhseet
+    # backup sheet below - comment out and replace with latest if data is working
+    # "https://docs.google.com/spreadsheets/d/1mCio8I0xCLp2vKQU9AkPyq80t43MGSDqjR3z-GCF9r0/edit#gid=1338220169").worksheet("Transfer Pick - GK")  # Open the spreadhseet
 
 def get_player_query_row(player_query):
     player_query = player_query.title()
@@ -80,7 +107,7 @@ def get_player_query_row(player_query):
         point_formatting_text = "point"
 
     return player_row, first_name, last_name, team_name, goals, assists, cost, selection, gameweek_points, \
-           total_points, next_fixture, goal_formatting_text, assist_formatting_text, point_formatting_text
+        total_points, next_fixture, goal_formatting_text, assist_formatting_text, point_formatting_text
 
 
 class ActionHelloWorld(Action):
@@ -171,7 +198,21 @@ class ActionPlayerGoalsQuery(Action):
                 message = (f'{player_query_first_name} {player_query_last_name} has scored {player_query_goals} {goal_text}.')
 
             except gspread.exceptions.CellNotFound:
-                message = (f"I couldn't find the player you're looking for. Please try again, and make sure you pronounced or spelled their name correctly.")        
+                    try:
+                        if len(test_query.split()) > 1:
+                            test_query = test_query.split(' ')[1]
+                        
+                        player_query_row, player_query_first_name, player_query_last_name, player_query_team_name, player_query_goals, \
+                            player_query_assists, player_query_cost, player_query_selection, player_query_gameweek_points, \
+                            player_query_total_points, player_query_next_fixture, goal_text, assist_text, point_text = get_player_query_row(name)
+
+                        message = (f'{player_query_first_name} {player_query_last_name} has scored {player_query_goals} {goal_text}.')
+                        pass
+                    except gspread.exceptions.CellNotFound:
+                        message = (f"I couldn't find the player you're looking for. Please try again, and make sure you pronounced or spelled their name correctly.")        
+
+            except gspread.exceptions.APIError:
+                message = (f"Sorry, I can't take any more requests for now. Please try again in a few minutes.")        
     
            
         dispatcher.utter_message(text=message)
@@ -205,9 +246,22 @@ class ActionPlayerAssistsQuery(Action):
                 message = (f'{player_query_first_name} {player_query_last_name} has {player_query_assists} {assist_text}.')
 
             except gspread.exceptions.CellNotFound:
-                message = (f"I couldn't find the player you're looking for. Please try again, and make sure you pronounced or spelled their name correctly.")        
+                    try:
+                        if len(test_query.split()) > 1:
+                            test_query = test_query.split(' ')[1]
+                        
+                        player_query_row, player_query_first_name, player_query_last_name, player_query_team_name, player_query_goals, \
+                            player_query_assists, player_query_cost, player_query_selection, player_query_gameweek_points, \
+                            player_query_total_points, player_query_next_fixture, goal_text, assist_text, point_text = get_player_query_row(name)
 
-           
+                        message = (f'{player_query_first_name} {player_query_last_name} has {player_query_assists} {assist_text}.')
+                        pass
+                    except gspread.exceptions.CellNotFound:
+                        message = (f"I couldn't find the player you're looking for. Please try again, and make sure you pronounced or spelled their name correctly.")        
+
+            except gspread.exceptions.APIError:
+                message = (f"Sorry, I can't take any more requests for now. Please try again in a few minutes.")        
+
         dispatcher.utter_message(text=message)
 
         return []
@@ -236,12 +290,24 @@ class ActionPlayerCostQuery(Action):
                     player_query_assists, player_query_cost, player_query_selection, player_query_gameweek_points, \
                     player_query_total_points, player_query_next_fixture, goal_text, assist_text, point_text = get_player_query_row(name)
 
-                message = (f"{player_query_first_name} {player_query_last_name}'s price is £{player_query_cost} today.")
-            
-            except gspread.exceptions.CellNotFound:
-                message = (f"I couldn't find the player you're looking for. Please try again, and make sure you pronounced or spelled their name correctly.")        
+                message = (f"{player_query_first_name} {player_query_last_name}'s price is £{player_query_cost} today.")       
 
-                    
+            except gspread.exceptions.CellNotFound:
+                    try:
+                        if len(test_query.split()) > 1:
+                            test_query = test_query.split(' ')[1]
+                        
+                        player_query_row, player_query_first_name, player_query_last_name, player_query_team_name, player_query_goals, \
+                        player_query_assists, player_query_cost, player_query_selection, player_query_gameweek_points, \
+                        player_query_total_points, player_query_next_fixture, goal_text, assist_text, point_text = get_player_query_row(name)
+
+                        message = (f"{player_query_first_name} {player_query_last_name}'s price is £{player_query_cost} today.")       
+                        pass
+                    except gspread.exceptions.CellNotFound:
+                        message = (f"I couldn't find the player you're looking for. Please try again, and make sure you pronounced or spelled their name correctly.")        
+
+            except gspread.exceptions.APIError:
+                message = (f"Sorry, I can't take any more requests for now. Please try again in a few minutes.") 
            
         dispatcher.utter_message(text=message)
 
@@ -274,7 +340,21 @@ class ActionPlayerSelectionQuery(Action):
                 message = (f'{player_query_first_name} {player_query_last_name} has been selected by {player_query_selection}% of FPL players.')
 
             except gspread.exceptions.CellNotFound:
-                message = (f"I couldn't find the player you're looking for. Please try again, and make sure you pronounced or spelled their name correctly.")        
+                    try:
+                        if len(test_query.split()) > 1:
+                            test_query = test_query.split(' ')[1]
+                        
+                        player_query_row, player_query_first_name, player_query_last_name, player_query_team_name, player_query_goals, \
+                            player_query_assists, player_query_cost, player_query_selection, player_query_gameweek_points, \
+                            player_query_total_points, player_query_next_fixture, goal_text, assist_text, point_text = get_player_query_row(name)
+
+                        message = (f'{player_query_first_name} {player_query_last_name} has been selected by {player_query_selection}% of FPL players.')       
+                        pass
+                    except gspread.exceptions.CellNotFound:
+                        message = (f"I couldn't find the player you're looking for. Please try again, and make sure you pronounced or spelled their name correctly.")        
+
+            except gspread.exceptions.APIError:
+                message = (f"Sorry, I can't take any more requests for now. Please try again in a few minutes.")         
            
         dispatcher.utter_message(text=message)
 
@@ -307,7 +387,21 @@ class ActionPlayerGameweekPointsQuery(Action):
                 message = (f'{player_query_first_name} {player_query_last_name} got {player_query_gameweek_points} {point_text} this week.')
 
             except gspread.exceptions.CellNotFound:
-                message = (f"I couldn't find the player you're looking for. Please try again, and make sure you pronounced or spelled their name correctly.")        
+                    try:
+                        if len(test_query.split()) > 1:
+                            test_query = test_query.split(' ')[1]
+                        
+                        player_query_row, player_query_first_name, player_query_last_name, player_query_team_name, player_query_goals, \
+                            player_query_assists, player_query_cost, player_query_selection, player_query_gameweek_points, \
+                            player_query_total_points, player_query_next_fixture, goal_text, assist_text, point_text = get_player_query_row(name)
+
+                        message = (f'{player_query_first_name} {player_query_last_name} got {player_query_gameweek_points} {point_text} this week.')       
+                        pass
+                    except gspread.exceptions.CellNotFound:
+                        message = (f"I couldn't find the player you're looking for. Please try again, and make sure you pronounced or spelled their name correctly.")        
+
+            except gspread.exceptions.APIError:
+                message = (f"Sorry, I can't take any more requests for now. Please try again in a few minutes.")         
     
            
         dispatcher.utter_message(text=message)
@@ -341,7 +435,21 @@ class ActionPlayerNextFixtureQuery(Action):
                 message = (f'{player_query_first_name} {player_query_last_name} is playing {player_query_next_fixture} next.')
             
             except gspread.exceptions.CellNotFound:
-                message = (f"I couldn't find the player you're looking for. Please try again, and make sure you pronounced or spelled their name correctly.")        
+                    try:
+                        if len(test_query.split()) > 1:
+                            test_query = test_query.split(' ')[1]
+                        
+                        player_query_row, player_query_first_name, player_query_last_name, player_query_team_name, player_query_goals, \
+                            player_query_assists, player_query_cost, player_query_selection, player_query_gameweek_points, \
+                            player_query_total_points, player_query_next_fixture, goal_text, assist_text, point_text = get_player_query_row(name)
+
+                        message = (f'{player_query_first_name} {player_query_last_name} got {player_query_gameweek_points} {point_text} this week.')       
+                        pass
+                    except gspread.exceptions.CellNotFound:
+                        message = (f'{player_query_first_name} {player_query_last_name} is playing {player_query_next_fixture} next.')        
+
+            except gspread.exceptions.APIError:
+                message = (f"Sorry, I can't take any more requests for now. Please try again in a few minutes.")        
            
         dispatcher.utter_message(text=message)
 
@@ -374,8 +482,23 @@ class ActionPlayerTeamNameQuery(Action):
                 message = (f'{player_query_first_name} {player_query_last_name} plays for {player_query_team_name}.')
 
             except gspread.exceptions.CellNotFound:
-                message = (f"I couldn't find the player you're looking for. Please try again, and make sure you pronounced or spelled their name correctly.")        
+                    try:
+                        if len(test_query.split()) > 1:
+                            test_query = test_query.split(' ')[1]
+                        
+                        player_query_row, player_query_first_name, player_query_last_name, player_query_team_name, player_query_goals, \
+                            player_query_assists, player_query_cost, player_query_selection, player_query_gameweek_points, \
+                            player_query_total_points, player_query_next_fixture, goal_text, assist_text, point_text = get_player_query_row(name)
+
+                        message = (f'{player_query_first_name} {player_query_last_name} got {player_query_gameweek_points} {point_text} this week.')       
+                        pass
+                    except gspread.exceptions.CellNotFound:
+                        message = (f'{player_query_first_name} {player_query_last_name} plays for {player_query_team_name}.')        
+
+            except gspread.exceptions.APIError:
+                message = (f"Sorry, I can't take any more requests for now. Please try again in a few minutes.")     
            
         dispatcher.utter_message(text=message)
 
         return []
+
