@@ -176,6 +176,76 @@ nlu:
     - which team does [Bruno Fernandes](player) for?
     - who does [Gibson](player) for?
 
+- intent: transfer_pick_forward
+  examples: |
+    - which forward should I sign?
+    - which striker should I sign?
+    - whick attacker should I sign?
+    - which forward should I transfer?
+    - which striker should I transfer?
+    - whick attacker should I transfer?
+    - which forward should I transfer into my team?
+    - which striker should I transfer into my team?
+    - whick attacker should I transfer into my team?
+    - which forward should I sign for my team?
+    - which striker should I sign for my team?
+    - whick attacker should I sign for my team?
+    - who should I sign for attack?
+    - who should I sign in attack?
+    - who should I transfer for my attack?
+    - which forward should I bring in?
+    - which striker should I bring in?
+    - whick attacker should I bring in?
+    - which forward should I transfer in?
+    - which striker should I transfer in?
+    - whick attacker should I transfer in?
+
+- intent: transfer_pick_midfielder
+  examples: |
+    - which midfielder should I sign?
+    - which midfielder should I transfer?
+    - which midfielder should I sign for my team?
+    - who should I sign for midfield?
+    - who should I sign in midfield?
+    - who should I transfer for my midfield?
+    - who should I transfer into my midfield?
+    - which midfielder should I bring in?
+    - which midfielder should I transfer in?
+    - which midfielder should I transfer into my team?
+    - which midfielder should I transfer into my squad?
+
+- intent: transfer_pick_defender
+  examples: |
+    - which defender should I sign?
+    - which defender should I transfer?
+    - which defender should I sign for my team?
+    - who should I sign for defence?
+    - who should I sign in defence?
+    - who should I transfer for my defence?
+    - who should I transfer into my defence?
+    - which defender should I bring in?
+    - which defender should I transfer in?
+    - which defender should I transfer into my team?
+    - which defender should I transfer into my squad?
+
+- intent: transfer_pick_goalkeeper
+  examples: |
+    - which goalkeeper should I sign?
+    - which goalkeeper should I transfer?
+    - which goalkeeper should I sign for my team?
+    - which goalie should I sign?
+    - which goalie should I transfer?
+    - which goalie should I sign for my team?
+    - who should I sign in goal?
+    - who should I sign for goalkeeper?
+    - who should I transfer for my goalkeeper?
+    - who should I transfer into my goal?
+    - which goalkeeper should I bring in?
+    - which goalkeeper should I transfer in?
+    - which goalkeeper should I transfer into my team?
+    - which goalkeeper should I transfer into my squad?
+
+
 - lookup: player
   examples: |
     - Ozil

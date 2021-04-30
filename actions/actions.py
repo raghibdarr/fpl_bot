@@ -109,6 +109,51 @@ def get_player_query_row(player_query):
     return player_row, first_name, last_name, team_name, goals, assists, cost, selection, gameweek_points, \
         total_points, next_fixture, goal_formatting_text, assist_formatting_text, point_formatting_text
 
+def transfer_pick_fun(position):
+    position_text_format = ""
+    search_range = 0
+    sheet = ""
+    if position == "FWD":
+        position_text_format = "forward"
+        search_range = 10
+        sheet = transfer_picks_forward_sheet
+    elif position == "MID":
+        position_text_format = "midfielder"
+        search_range = 10
+        sheet = transfer_picks_midfielder_sheet
+    elif position == "DEF":
+        position_text_format = "defender"
+        search_range = 20
+        sheet = transfer_picks_defender_sheet
+    elif position == "GK":
+        position_text_format = "goalkeeper"
+        search_range = 20
+        sheet = transfer_picks_goalkeeper_sheet
+
+    row_numbers_of_trns_picks = []
+
+    for i in range(2, search_range):
+        if sheet.cell(i, 6).value == position and len(row_numbers_of_trns_picks) < 1:
+            len(row_numbers_of_trns_picks)
+            row_numbers_of_trns_picks.append(i)
+
+    row_num_of_top_pick = row_numbers_of_trns_picks[0]
+
+    transfer_pick_top_first_name = sheet.cell(row_num_of_top_pick, 1).value
+    transfer_pick_top_last_name = sheet.cell(row_num_of_top_pick, 2).value
+    transfer_pick_top_fd_index = sheet.cell(row_num_of_top_pick, 3).value
+    transfer_pick_top_cost = sheet.cell(row_num_of_top_pick, 4).value
+    transfer_pick_top_selection = sheet.cell(row_num_of_top_pick, 14).value
+    transfer_pick_team_name = sheet.cell(row_num_of_top_pick, 7).value
+    transfer_pick_goals = sheet.cell(row_num_of_top_pick, 15).value
+    transfer_pick_assists = sheet.cell(row_num_of_top_pick, 16).value
+    transfer_pick_next_fixture = sheet.cell(row_num_of_top_pick, 8).value
+    transfer_pick_clean_sheets = sheet.cell(row_num_of_top_pick, 17).value
+
+    return position_text_format, transfer_pick_top_first_name, transfer_pick_top_last_name, \
+        transfer_pick_top_fd_index, transfer_pick_top_cost, transfer_pick_top_selection, transfer_pick_team_name, \
+        transfer_pick_goals, transfer_pick_assists, transfer_pick_next_fixture, transfer_pick_clean_sheets
+
 
 class ActionHelloWorld(Action):
 
@@ -502,3 +547,124 @@ class ActionPlayerTeamNameQuery(Action):
 
         return []
 
+
+class ActionTransferPickForward(Action):
+
+    def name(self) -> Text:
+         return "action_transfer_pick_forward"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        message = "Sorry, I wasn't able to understand you. If you're trying to ask me about a player, please make sure you pronounced or spelled their name correctly."
+
+        try:
+            fwd_position = "FWD"
+            fwd_text_format, fwd_pick_top_first_name, fwd_pick_top_last_name, fwd_pick_top_fd_index, fwd_pick_top_cost, \
+                fwd_pick_top_selection, fwd_pick_team_name,  fwd_pick_goals, fwd_pick_assists, fwd_pick_next_fixture, \
+                fwd_pick_clean_sheets = transfer_pick_fun(fwd_position)
+
+            message = ( f"The {fwd_text_format} you should sign this gameweek is {fwd_pick_top_first_name} "
+                        f"{fwd_pick_top_last_name} from {fwd_pick_team_name}. His FD index is {fwd_pick_top_fd_index}, "
+                        f"which is the highest, meaning he has the best form and the easiest upcoming 5 fixtures. His cost today is "
+                        f"{fwd_pick_top_cost}, and he's been selected by {fwd_pick_top_selection}% of FPL players. He's scored "
+                        f"{fwd_pick_goals} goals, has {fwd_pick_assists} assists, and his next match is {fwd_pick_next_fixture}.")
+
+        except gspread.exceptions.APIError:
+            message = "Sorry, I can't take any more requests for now. Please try again in a few minutes."
+           
+        dispatcher.utter_message(text=message)
+
+        return []
+
+class ActionTransferPickMidfielder(Action):
+
+    def name(self) -> Text:
+         return "action_transfer_pick_midfielder"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        message = "Sorry, I wasn't able to understand you. If you're trying to ask me about a player, please make sure you pronounced or spelled their name correctly."
+
+        try:
+            mid_position = "MID"
+            mid_text_format, mid_pick_top_first_name, mid_pick_top_last_name, mid_pick_top_fd_index, mid_pick_top_cost, \
+                mid_pick_top_selection, mid_pick_team_name, mid_pick_goals, mid_pick_assists, mid_pick_next_fixture, \
+                mid_pick_clean_sheets = transfer_pick_fun(mid_position)
+
+            message = ( f"The {mid_text_format} you should sign this gameweek is {mid_pick_top_first_name} {mid_pick_top_last_name} from "
+                        f"{mid_pick_team_name}. His FD index is {mid_pick_top_fd_index}, which is the highest, meaning he has the best "
+                        f"form and the easiest upcoming 5 fixtures. His cost today is {mid_pick_top_cost}, and he's been selected by "
+                        f"{mid_pick_top_selection}% of FPL players. He's scored {mid_pick_goals} goals, has {mid_pick_assists} assists, "
+                        f"and his next match is {mid_pick_next_fixture}.")
+
+        except gspread.exceptions.APIError:
+            message = "Sorry, I can't take any more requests for now. Please try again in a few minutes."
+           
+        dispatcher.utter_message(text=message)
+
+        return []
+
+
+class ActionTransferPickDefender(Action):
+
+    def name(self) -> Text:
+         return "action_transfer_pick_defender"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        message = "Sorry, I wasn't able to understand you. If you're trying to ask me about a player, please make sure you pronounced or spelled their name correctly."
+
+        try:
+            def_position = "DEF"
+            def_text_format, def_pick_top_first_name, def_pick_top_last_name, def_pick_top_fd_index, def_pick_top_cost, \
+                def_pick_top_selection, def_pick_team_name, def_pick_goals, def_pick_assists, def_pick_next_fixture, \
+                def_pick_clean_sheets = transfer_pick_fun(def_position)
+
+            message = ( f"The {def_text_format} you should sign this gameweek is {def_pick_top_first_name} {def_pick_top_last_name} from "
+                        f"{def_pick_team_name}. His FD index is {def_pick_top_fd_index}, which is the highest, meaning he has the best "
+                        f"form and the easiest upcoming 5 fixtures. His cost today is {def_pick_top_cost}, and he's been selected by "
+                        f"{def_pick_top_selection}% of FPL players. He has {def_pick_clean_sheets} clean sheets and his next match is "
+                        f"{def_pick_next_fixture}.")
+
+        except gspread.exceptions.APIError:
+            message = "Sorry, I can't take any more requests for now. Please try again in a few minutes."
+           
+        dispatcher.utter_message(text=message)
+
+        return []
+
+class ActionTransferPickGoalkeeper(Action):
+
+    def name(self) -> Text:
+         return "action_transfer_pick_goalkeeper"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        message = "Sorry, I wasn't able to understand you. If you're trying to ask me about a player, please make sure you pronounced or spelled their name correctly."
+
+        try:
+            gk_position = "GK"
+            gk_text_format, gk_pick_top_first_name, gk_pick_top_last_name, gk_pick_top_fd_index, gk_pick_top_cost, \
+                gk_pick_top_selection, gk_pick_team_name, gk_pick_goals, gk_pick_assists, gk_pick_next_fixture, \
+                gk_pick_clean_sheets = transfer_pick_fun(gk_position)
+
+            message = ( f"The {gk_text_format} you should sign this gameweek is {gk_pick_top_first_name} {gk_pick_top_last_name} from "
+                        f"{gk_pick_team_name}. His FD index is {gk_pick_top_fd_index}, which is the highest, meaning he has the best "
+                        f"form and the easiest upcoming 5 fixtures. His cost today is {gk_pick_top_cost}, and he's been selected by "
+                        f"{gk_pick_top_selection}% of FPL players. He has {gk_pick_clean_sheets} clean sheets and his next match is "
+                        f"{gk_pick_next_fixture}.")
+
+        except gspread.exceptions.APIError:
+            message = "Sorry, I can't take any more requests for now. Please try again in a few minutes."
+           
+        dispatcher.utter_message(text=message)
+
+        return []

@@ -18,6 +18,10 @@ intents:
   - player_gameweek_points_query
   - player_next_fixture_query
   - player_team_name_query
+  - transfer_pick_forward
+  - transfer_pick_midfielder
+  - transfer_pick_defender
+  - transfer_pick_goalkeeper
 
 entities:
   - player
@@ -33,10 +37,14 @@ actions:
   - action_player_gameweek_points_query
   - action_player_next_fixture_query
   - action_player_team_name_query
+  - action_transfer_pick_forward
+  - action_transfer_pick_midfielder
+  - action_transfer_pick_defender
+  - action_transfer_pick_goalkeeper
 
 responses:
   utter_greet:
-  - text: "Hi! I'm a Fantasy Premier League bot. Example questions are: How many points did Bruno Fernandes get? Or, How many goals has Aubameyang scored?"
+  - text: "Hi! I'm a Fantasy Premier League bot. Ask me anything related to Fantasy Premier League and I'll try to answer. Example questions are: How many points did Bruno Fernandes get? Or, How many goals has Aubameyang scored? Or, which midfielder should I sign?"
 
   utter_cheer_up:
   - text: "Here is something to cheer you up:"

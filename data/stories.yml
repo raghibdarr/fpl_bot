@@ -92,6 +92,30 @@ stories:
   - intent: player_team_name_query
   - action: action_player_team_name_query
 
+- story: transfer pick forward path
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: transfer_pick_forward
+  - action: action_transfer_pick_forward
 
+- story: transfer pick midfielder path
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: transfer_pick_midfielder
+  - action: action_transfer_pick_midfielder
 
+- story: transfer pick defender path
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: transfer_pick_defender
+  - action: action_transfer_pick_defender
 
+- story: transfer pick goalkeeper path
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: transfer_pick_goalkeeper
+  - action: action_transfer_pick_goalkeeper
