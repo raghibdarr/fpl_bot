@@ -22,6 +22,14 @@ intents:
   - transfer_pick_midfielder
   - transfer_pick_defender
   - transfer_pick_goalkeeper
+  - overall_most_goals
+  - overall_most_assists
+  - overall_most_points_total
+  - overall_most_points_gw
+  - overall_most_in_form
+  - overall_most_clean_sheets
+  - overall_most_transferred_out_gw
+  - overall_most_transferred_in_gw
 
 entities:
   - player
@@ -41,10 +49,18 @@ actions:
   - action_transfer_pick_midfielder
   - action_transfer_pick_defender
   - action_transfer_pick_goalkeeper
+  - action_overall_most_goals
+  - action_overall_most_assists
+  - action_overall_most_points_total
+  - action_overall_most_points_gw
+  - action_overall_most_in_form
+  - action_overall_most_clean_sheets
+  - action_overall_most_transferred_out_gw
+  - action_overall_most_transferred_in_gw
 
 responses:
   utter_greet:
-  - text: "Hi! I'm a Fantasy Premier League bot. Ask me anything related to Fantasy Premier League and I'll try to answer. Example questions are: How many points did Bruno Fernandes get? Or, How many goals has Aubameyang scored? Or, which midfielder should I sign?"
+  - text: "Hi! I'm a Fantasy Premier League bot. Ask me anything related to Fantasy Premier League and I'll try to answer. Example questions are: How many points did Bruno Fernandes get? Or, Who got the most points this week? Or, which midfielder should I sign?"
 
   utter_cheer_up:
   - text: "Here is something to cheer you up:"

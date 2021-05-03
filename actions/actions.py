@@ -58,6 +58,88 @@ transfer_picks_goalkeeper_sheet = client.open_by_url(
     # backup sheet below - comment out and replace with latest if data is working
     # "https://docs.google.com/spreadsheets/d/1mCio8I0xCLp2vKQU9AkPyq80t43MGSDqjR3z-GCF9r0/edit#gid=1338220169").worksheet("Transfer Pick - GK")  # Open the spreadhseet
 
+def overall_most_goals():
+    top_num_of_goals = data_sheet.cell(714, 2).value
+    top_first_name = data_sheet.cell(714, 3).value
+    if top_first_name is None:
+        top_first_name = ''
+    top_last_name = data_sheet.cell(714, 4).value
+
+    return top_num_of_goals, top_first_name, top_last_name
+
+
+def overall_most_assists():
+    top_num_of_assists = data_sheet.cell(719, 2).value
+    top_first_name = data_sheet.cell(719, 3).value
+    if top_first_name is None:
+        top_first_name = ''
+    top_last_name = data_sheet.cell(719, 4).value
+
+    return top_num_of_assists, top_first_name, top_last_name
+
+def overall_most_points_total():
+    top_num_of_points_total = data_sheet.cell(724, 2).value
+    top_first_name = data_sheet.cell(724, 3).value
+    if top_first_name is None:
+        top_first_name = ''
+    top_last_name = data_sheet.cell(724, 4).value
+
+    return top_num_of_points_total, top_first_name, top_last_name
+
+def overall_most_points_gw():
+    top_num_of_points_gw = data_sheet.cell(729, 2).value
+    top_first_name = data_sheet.cell(729, 3).value
+    if top_first_name is None:
+        top_first_name = ''
+    top_last_name = data_sheet.cell(729, 4).value
+
+    return top_num_of_points_gw, top_first_name, top_last_name
+
+def overall_most_in_form():
+    top_in_form = data_sheet.cell(734, 2).value
+    top_first_name = data_sheet.cell(734, 3).value
+    if top_first_name is None:
+        top_first_name = ''
+    top_last_name = data_sheet.cell(734, 4).value
+
+    return top_in_form, top_first_name, top_last_name
+
+def overall_most_clean_sheets():
+    top_num_of_clean_sheets = data_sheet.cell(739, 2).value
+    top_first_name = data_sheet.cell(739, 3).value
+    if top_first_name is None:
+        top_first_name = ''
+    top_last_name = data_sheet.cell(739, 4).value
+
+    return top_num_of_clean_sheets, top_first_name, top_last_name
+
+def overall_most_transferred_out_gw():
+    top_transferred_out_gw = data_sheet.cell(744, 2).value
+    top_first_name = data_sheet.cell(744, 3).value
+    if top_first_name is None:
+        top_first_name = ''
+    top_last_name = data_sheet.cell(744, 4).value
+
+    return top_transferred_out_gw, top_first_name, top_last_name
+
+def overall_most_transferred_in_gw():
+    top_transferred_in_gw = data_sheet.cell(749, 2).value
+    top_first_name = data_sheet.cell(749, 3).value
+    if top_first_name is None:
+        top_first_name = ''
+    top_last_name = data_sheet.cell(749, 4).value
+
+    return top_transferred_in_gw, top_first_name, top_last_name
+
+def overall_most_points_per_game():
+    top_points_per_game = data_sheet.cell(754, 2).value
+    top_first_name = data_sheet.cell(754, 3).value
+    if top_first_name is None:
+        top_first_name = ''
+    top_last_name = data_sheet.cell(754, 4).value
+
+    return top_points_per_game, top_first_name, top_last_name
+
 def get_player_query_row(player_query):
     player_query = player_query.title()
 
@@ -668,3 +750,203 @@ class ActionTransferPickGoalkeeper(Action):
         dispatcher.utter_message(text=message)
 
         return []
+
+class ActionOverallMostGoals(Action):
+
+    def name(self) -> Text:
+         return "action_overall_most_goals"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        message = "Sorry, I wasn't able to understand you. If you're trying to ask me about a player, please make sure you pronounced or spelled their name correctly."
+
+        try:
+            goal_num, name, surname = overall_most_goals()
+            message = f"{name} {surname} is the top scorer with {goal_num} goals."
+
+        except gspread.exceptions.APIError:
+            message = "Sorry, I can't take any more requests for now. Please try again in a few minutes."
+           
+        dispatcher.utter_message(text=message)
+
+        return []
+
+class ActionOverallMostAssists(Action):
+
+    def name(self) -> Text:
+         return "action_overall_most_assists"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        message = "Sorry, I wasn't able to understand you. If you're trying to ask me about a player, please make sure you pronounced or spelled their name correctly."
+
+        try:
+            assist_num, name, surname = overall_most_assists()
+            message = f"{name} {surname} has the most assists with {assist_num} assists."
+
+        except gspread.exceptions.APIError:
+            message = "Sorry, I can't take any more requests for now. Please try again in a few minutes."
+           
+        dispatcher.utter_message(text=message)
+
+        return []
+
+class ActionOverallMostPointsTotal(Action):
+
+    def name(self) -> Text:
+         return "action_overall_most_points_total"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        message = "Sorry, I wasn't able to understand you. If you're trying to ask me about a player, please make sure you pronounced or spelled their name correctly."
+
+        try:
+            points_total, name, surname = overall_most_points_total()
+            message = f"{name} {surname} has the most points in total with {points_total} points."
+
+        except gspread.exceptions.APIError:
+            message = "Sorry, I can't take any more requests for now. Please try again in a few minutes."
+           
+        dispatcher.utter_message(text=message)
+
+        return []
+
+class ActionOverallMostPointsWeek(Action):
+
+    def name(self) -> Text:
+         return "action_overall_most_points_week"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        message = "Sorry, I wasn't able to understand you. If you're trying to ask me about a player, please make sure you pronounced or spelled their name correctly."
+
+        try:
+            points_week, name, surname = overall_most_points_gw()
+            message = f"{name} {surname} has the most points this week with {points_week} points."
+
+        except gspread.exceptions.APIError:
+            message = "Sorry, I can't take any more requests for now. Please try again in a few minutes."
+           
+        dispatcher.utter_message(text=message)
+
+        return []
+
+class ActionOverallMostInForm(Action):
+
+    def name(self) -> Text:
+         return "action_overall_most_in_form"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        message = "Sorry, I wasn't able to understand you. If you're trying to ask me about a player, please make sure you pronounced or spelled their name correctly."
+
+        try:
+            form, name, surname = overall_most_in_form()
+            message = f"{name} {surname} is the most in form player with a form of {form}."
+
+        except gspread.exceptions.APIError:
+            message = "Sorry, I can't take any more requests for now. Please try again in a few minutes."
+           
+        dispatcher.utter_message(text=message)
+
+        return []
+
+class ActionOverallMostCleanSheets(Action):
+
+    def name(self) -> Text:
+         return "action_overall_most_clean_sheets"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        message = "Sorry, I wasn't able to understand you. If you're trying to ask me about a player, please make sure you pronounced or spelled their name correctly."
+
+        try:
+            clean_sheets, name, surname = overall_most_clean_sheets()
+            message = f"{name} {surname} has the most clean sheets with {clean_sheets} cleansheets."
+
+        except gspread.exceptions.APIError:
+            message = "Sorry, I can't take any more requests for now. Please try again in a few minutes."
+           
+        dispatcher.utter_message(text=message)
+
+        return []
+
+class ActionOverallMostTransferredOutGW(Action):
+
+    def name(self) -> Text:
+         return "action_overall_most_transferred_out_gw"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        message = "Sorry, I wasn't able to understand you. If you're trying to ask me about a player, please make sure you pronounced or spelled their name correctly."
+
+        try:
+            trans_out, name, surname = overall_most_transferred_out_gw()
+            message = f"{name} {surname} is the most transferred out player this GW."
+
+        except gspread.exceptions.APIError:
+            message = "Sorry, I can't take any more requests for now. Please try again in a few minutes."
+           
+        dispatcher.utter_message(text=message)
+
+        return []
+
+class ActionOverallMostTransferredInGW(Action):
+
+    def name(self) -> Text:
+         return "action_overall_most_transferred_in_gw"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        message = "Sorry, I wasn't able to understand you. If you're trying to ask me about a player, please make sure you pronounced or spelled their name correctly."
+
+        try:
+            trans_out, name, surname = overall_most_transferred_in_gw()
+            message = f"{name} {surname} is the most transferred in player this GW."
+
+        except gspread.exceptions.APIError:
+            message = "Sorry, I can't take any more requests for now. Please try again in a few minutes."
+           
+        dispatcher.utter_message(text=message)
+
+        return []
+
+"""
+class ActionOverallMostPointsPerGame(Action):
+
+    def name(self) -> Text:
+         return "action_overall_most_points_per_game"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        message = "Sorry, I wasn't able to understand you. If you're trying to ask me about a player, please make sure you pronounced or spelled their name correctly."
+
+        try:
+            points_per_game, name, surname = overall_most_points_per_game()
+            message = f"{name} {surname} has the most points per game, with {points_per_game} points per game."
+
+        except gspread.exceptions.APIError:
+            message = "Sorry, I can't take any more requests for now. Please try again in a few minutes."
+           
+        dispatcher.utter_message(text=message)
+
+        return []
+"""

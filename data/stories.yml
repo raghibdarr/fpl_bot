@@ -119,3 +119,59 @@ stories:
   - action: utter_greet
   - intent: transfer_pick_goalkeeper
   - action: action_transfer_pick_goalkeeper
+
+- story: overall most goals path
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: overall_most_goals
+  - action: action_overall_most_goals
+
+- story: overall most assists path
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: overall_most_assists
+  - action: action_overall_most_assists
+
+- story: overall most points total path
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: overall_most_points_total
+  - action: action_overall_most_points_total
+
+- story: overall most points gw path
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: overall_most_points_gw
+  - action: action_overall_most_points_gw
+
+- story: overall most in form path
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: overall_most_in_form
+  - action: action_overall_most_in_form
+
+- story: overall most clean sheets path
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: overall_most_clean_sheets
+  - action: action_overall_most_clean_sheets
+
+- story: overall most transferred out gw path
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: overall_most_transferred_out_gw
+  - action: action_overall_most_transferred_out_gw
+
+- story: overall most transferred in gw path
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: overall_most_transferred_in_gw
+  - action: action_overall_most_transferred_in_gw

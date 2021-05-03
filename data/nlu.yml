@@ -158,13 +158,13 @@ nlu:
    
 - intent: player_next_fixture_query
   examples: |
-    - which team is [Aubameyang](player) against next?
-    - which team is [Willian](player) against next match?
-    - which team is [Saliba](player) against next gameweek?
+    - which team is [Aubameyang](player) playing against next?
+    - which team is [Willian](player) playing against next match?
+    - which team is [Saliba](player) playing against next gameweek?
     - who is [Runarsson](player) going to play next?
     - who is [Macey](player) going to play against next match?
     - who is [Macey](player) playing next match?
-    - who is [Macey](player) playing next ?
+    - who is [Macey](player) playing next?
     - what's [Alexander-Arnold](player)'s next match?
     - what's [Partey](player)'s next fixture?
     - what's [Elneny](player)'s next opponents?
@@ -173,8 +173,8 @@ nlu:
 - intent: player_team_name_query
   examples: |
     - which team is [Taylor](player) from?
-    - which team does [Bruno Fernandes](player) for?
-    - who does [Gibson](player) for?
+    - which team does [Bruno Fernandes](player) play for?
+    - who does [Gibson](player) play for?
 
 - intent: transfer_pick_forward
   examples: |
@@ -245,6 +245,85 @@ nlu:
     - which goalkeeper should I transfer into my team?
     - which goalkeeper should I transfer into my squad?
 
+- intent: overall_most_goals
+  examples: |
+    - which player has the most goals?
+    - who has the most goals?
+    - which player has the most goals in the league?
+    - who has the most goals in the league?
+    - who is the top scorer in the league?
+    - who is the top scorer?
+
+- intent: overall_most_assists
+  examples: |
+    - which player has the most assists?
+    - who has the most assists?
+    - which player has the most assists in the league?
+    - who has the most assists in the league?
+    - who is the top assister in the league?
+    - who is the top assister?
+
+- intent: overall_most_points_total
+  examples: |
+    - which player has the most points?
+    - who has the most points?
+    - which player has the highest points?
+    - who has the highest points?
+    - which player has the most points in the league?
+    - who has the most points in the league?
+
+- intent: overall_most_points_gw
+  examples: |
+    - which player has the most points this week?
+    - who has the most points this week?
+    - who got the most points this week?
+
+- intent: overall_most_in_form
+  examples: |
+    - which player is most in form?
+    - which player is most inform?
+    - which player is most in-form?
+    - who is the most in form player?
+    - who is the most inform player?
+    - who is the most in-form player?
+    - who is the most in form player in the league?
+    - who is the most inform player in the league?
+    - who is the most in-form player league?
+    - which player has the best form?
+    - which player has the best form in the league?
+
+- intent: overall_most_clean_sheets
+  examples: |
+    - which player has the most clean sheets?
+    - who has the most clean sheets?
+    - which player has the most clean sheets in the league?
+    - who has the most clean sheets in the league?
+
+- intent: overall_most_transferred_out_gw
+  examples: |
+    - which player is the most transferred out?
+    - which player is the most transferred out this week?
+    - which player is the most transferred out this gameweek?
+    - who is the most transferred out?
+    - who's the most transferred out this week?
+    - who is the most transferred out player?
+    - who's the most transferred out player this week?
+    - which player has been transferred out the most this week?
+    - who has been the most transferred out this week?
+    - which player is the most transferred out this gameweek?
+
+- intent: overall_most_transferred_in_gw
+  examples: |
+    - which player is the most transferred in?
+    - which player is the most transferred in this week?
+    - which player is the most transferred in this gameweek?
+    - who is the most transferred in?
+    - who is the most transferred in this week?
+    - who is the most transferred in player?
+    - who is the most transferred in player this week?
+    - which player has been transferred in the most this week?
+    - who has been the most transferred in this week?
+    - which player is the most transferred in this gameweek?
 
 - lookup: player
   examples: |
